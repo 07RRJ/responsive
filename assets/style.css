@@ -20,7 +20,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    
+
     margin: 0;
     padding: 0;
 
@@ -226,7 +226,7 @@ h3 {
     min-width: 100px;
 }
 
-@media (width < 700px) {
+@media (width: 860px) {
     .columns {
         columns: 2;
     }
@@ -245,7 +245,7 @@ h3 {
     font-weight: 700;
 }
 
-@media (width < 480px) {
+@media (width: 480px) {
     .footer-title {
         margin-block: 1.5rem 0rem;
     }
@@ -299,11 +299,13 @@ img {
 /* cards styling */
 
 /* TODO: se till att bilderna funkar i mobil-versionen */
+/* TODO: ÖVERKURS: Jag vill att alla utom den man hovrar över ska vara halvgenomskinliga - animationen, transition, måste också fungera */
 .card {
     all: unset;
     overflow: hidden;
     border-radius: 1rem;
-    transition: opacity 250ms ease-in-out;
+    opacity: 1;
+    transition: opacity 2000ms ease-in-out;
 }
 
 .card-image {
@@ -312,55 +314,32 @@ img {
     cursor: pointer;
 }
 
-/* TODO: ÖVERKURS: Jag vill att alla utom den man hovrar över ska vara halvgenomskinliga - animationen, transition, måste också fungera */
-.card-layout:hover {
-    opacity: 0.4;
+
+.card:hover{
+    opacity: 1;
 }
 
-.card-layout {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* standard för desktop */
-    gap: 1rem;
+.card-layout:hover .card:not(:hover){
+    opacity: 0,4;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
     .card-layout {
         grid-template-columns: repeat(2, 1fr); /* två kolumner på mellan-skärmar */
     }
-    
-        .card {
-        width: 100%; /* Tar hela bredden av .card-layout */
-    }
-
-    .card-image {
-        width: 100%;
-        aspect-ratio: auto;
-        object-fit: cover;
-    }
 }
-
-@media (max-width: 600px) {
-    .card-layout {
-        grid-template-columns: 1fr; /* en kolumn på mobil */
-    }
-}
-
-
-@media (max-width: 600px) {
-}
-
 
 /* responsiveness */
 
 /* MOBILE VIEW */
 
-@media (max-width < 480px) {
+@media (max-width: 480px) {
 
     /* OBS: margins är en hjälpklass - se den användas med sections i HTML-filerna */
 
     .margins {
         width: 100%;
-        padding-inline: 1;
+        padding-inline: 1rem;
     }
 
     .footer-container{
@@ -386,7 +365,7 @@ img {
 
 /* TABLET VIEW */
 
-/* @media (width > 480px) and (width < 860px) {
+/* @media (width: 480px) and (width < 860px) {
 
 
 } */
@@ -541,7 +520,7 @@ img {
 }
 
 
-@media (max-width < 480px) {
+@media (max-width: 480px) {
 
     /* om mobilvy visa hamburgerknappen */
     .hamburger-button {
