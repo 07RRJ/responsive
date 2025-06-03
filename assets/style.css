@@ -1,0 +1,565 @@
+/* global styling */
+
+:root {
+    --clr-copy: hsl(0, 0%, 23%);
+    --clr-cta: #0ee09e;
+    --clr-accent: #04ffb0;
+    --clr-active: #138f68;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;     /* se till att rutor beräknas med ev. padding och margin */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0;
+    padding: 0;
+
+    background-color: #fafafa;
+
+    min-height: 100vh;
+
+    color: #3a3a3a;
+
+    font-size: 1em;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+nav.navigation-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+
+    width: 100%;
+    padding: 0.2rem 1rem;
+
+    background-color: #fff;
+
+    box-shadow: 0 3px 6px rgb(178, 178, 178);
+
+    z-index: 1;
+}
+
+.main-header {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    background-image: url('../img/responsive-bg2.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+/* skapa övergång i bakgrunden i hero */
+.main-header::after {
+    content: '';
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
+
+    background: linear-gradient(to bottom, hsl(255 100% 100% / 0.2) 70%, #fafafa);
+}
+
+.hero-layout {
+    width: 70%;
+    margin-inline: auto;
+    display: grid;
+
+    grid-template-columns: 1fr 1.618fr;
+    gap: 2rem;
+}
+
+.primary-navigation {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.card-layout {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 1rem;
+}
+
+.flex-layout {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.green-bg {
+    background: #dcffe4;
+
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+}
+
+section:not(:first-child) {
+    padding-bottom: 3rem;
+}
+
+section {
+    padding-block: 4rem;
+}
+
+/* marginaler för sektioner */
+.margins {
+    width: 70%;
+    margin-inline: auto;
+}
+
+
+/* footer styling */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding-block: 4rem 4rem;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+}
+
+.footer-navigation-bar,
+.footer-info,
+.footer-social {
+    flex: 1;
+}
+
+.footer-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    margin-top: 1rem;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+/* text styling */
+
+p {
+    color: #3a3a3a;
+}
+
+h1,
+h2 {
+    color: black;
+}
+
+h3 {
+    margin-bottom: 0.5rem;
+}
+
+.lead {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5;
+
+}
+
+.main-title {
+    margin-block: 1rem 0.5rem;
+    font-size: 4rem;
+    line-height: 1;
+    white-space: pre-wrap;
+}
+
+.upper {
+    color: rgb(1, 61, 16);
+    text-transform: uppercase;
+}
+
+.color-reversed {
+    color: white;
+}
+
+.columns {
+    columns: 3;
+    column-gap: 3rem;
+    column-rule: 1px solid rgb(191, 222, 198);
+}
+
+.columns p {
+    margin-top: 0;
+    min-width: 100px;
+}
+
+@media (width < 700px) {
+    .columns {
+        columns: 2;
+    }
+    .main-header, .green-bg{
+        clip-path: none;
+    }
+}
+
+
+.footer-title {
+    display: block;
+    color: #fff;
+    margin-block: 0rem;
+
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+@media (width < 480px) {
+    .footer-title {
+        margin-block: 1.5rem 0rem;
+    }
+        .columns {
+        columns: 1;
+    }
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-text {
+    color: #d2d2d2;
+}
+
+.small {
+    font-size: 0.85rem;
+    color: #d6d6d6;
+}
+
+
+/* image styling */
+
+img {
+    display: block;
+    
+    max-width: 100%;    /* se till att bilden ej kan bli större än sin närmaste parent behållare */
+    object-fit: cover;
+
+    border-radius: 1rem;
+
+    font-style: italic;
+    color: darkgray;
+}
+
+.main-logo {
+    width: 2rem;  /* 32px (1rem = 16px) */
+    aspect-ratio: 1;
+}
+
+.logo {
+    width: 2rem; 
+    height: 2rem;
+    aspect-ratio: 1;
+}
+
+
+/* cards styling */
+
+/* TODO: se till att bilderna funkar i mobil-versionen */
+.card {
+    all: unset;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: opacity 250ms ease-in-out;
+}
+
+.card-image {
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* TODO: ÖVERKURS: Jag vill att alla utom den man hovrar över ska vara halvgenomskinliga - animationen, transition, måste också fungera */
+.card-layout:hover {
+    opacity: 0.4;
+}
+
+.card-layout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* standard för desktop */
+    gap: 1rem;
+}
+
+@media (max-width: 900px) {
+    .card-layout {
+        grid-template-columns: repeat(2, 1fr); /* två kolumner på mellan-skärmar */
+    }
+    
+        .card {
+        width: 100%; /* Tar hela bredden av .card-layout */
+    }
+
+    .card-image {
+        width: 100%;
+        aspect-ratio: auto;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-layout {
+        grid-template-columns: 1fr; /* en kolumn på mobil */
+    }
+}
+
+
+@media (max-width: 600px) {
+}
+
+
+/* responsiveness */
+
+/* MOBILE VIEW */
+
+@media (max-width < 480px) {
+
+    /* OBS: margins är en hjälpklass - se den användas med sections i HTML-filerna */
+
+    .margins {
+        width: 100%;
+        padding-inline: 1;
+    }
+
+    .footer-container{
+        display: block;
+    }
+
+    .footer-social{
+        display: block;
+    }
+
+    .card-layout{
+        grid-template-columns: 1fr;
+    }
+
+    .primary-navigation{
+        display: none;
+    }
+    .columns{
+        display: block;
+    }
+}
+
+
+/* TABLET VIEW */
+
+/* @media (width > 480px) and (width < 860px) {
+
+
+} */
+
+
+
+/* link styling */
+
+.btn-primary {
+    all: unset;
+
+    position: relative;
+    display: inline-block;
+
+    outline: initial;
+
+    font-family: inherit;
+    font-weight: 600;
+    color: white;
+    background-color: var(--clr-cta);
+
+    text-align: center;
+
+    box-shadow: 0 3px 6px hsl(162 95% 7% / 0.5);
+    border-radius: 4px;
+
+    padding-inline: 1.5rem;
+    padding-block: 0.75rem;
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: color 125ms ease-in-out;
+
+    isolation: isolate;
+}
+
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    opacity: 0;
+    background: var(--clr-accent);
+    inset: 0;
+    overflow: hidden;
+    transform: translateY(-100%);
+
+    transition: transform 200ms ease-in-out,
+        opacity 150ms ease-in-out;
+    z-index: -1;
+}
+
+.btn-primary:focus::after,
+.btn-primary:hover::after {
+    opacity: 1;
+    transform: translateY(0%);
+
+}
+
+/* när man hovrar över btn-primary */
+/* 
+.btn-primary:hover,
+.btn-primary:focus {
+    color: var(--clr-copy);
+} */
+
+.btn-primary:focus {
+    outline: 1px solid white;
+}
+
+.btn-primary:active {
+    box-shadow: none;
+    outline: none;
+    color: white;
+}
+
+.btn-primary:active::after {
+    background: var(--clr-active);
+}
+
+
+.nav-link:link,
+.nav-link:visited {
+    color: var(--clr-copy);
+    font-weight: 500;
+
+    text-underline-offset: 1.5em;
+    text-decoration-thickness: 0;
+
+    text-decoration-color: transparent;
+    transition: text-decoration-color 250ms ease-in-out,
+                text-underline-offset 250ms ease-in-out,
+                color 150ms ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--clr-cta);
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.5em;
+    text-decoration-color: var(--clr-cta);
+    text-decoration-thickness: 0.14em;
+}
+
+.nav-link.selected {
+    text-decoration-color: var(--clr-active);
+    text-underline-offset: 0.5em;
+    text-decoration-thickness: 0.14em;
+}
+
+.nav-link:active {
+    color: var(--clr-active);
+    text-decoration-color: var(--clr-active);
+
+}
+
+.footer-link:link,
+.footer-link:visited {
+    color: var(--clr-cta);
+    text-underline-offset: 0.26em;
+    text-decoration-color: var(--clr-active);
+}
+
+.footer-link.selected {
+    text-decoration-color: white;
+}
+
+.footer-link:focus,
+.footer-link:hover {
+    color: var(--clr-accent);
+    text-decoration-color: var(--clr-cta);
+}
+
+.footer-link:hover {
+    color: var(--clr-accent);
+}
+
+.footer-link:active {
+    color: var(--clr-active);
+}
+
+
+/* buttons */
+
+.hamburger-button {
+    all: unset;
+    display: none;
+    place-items: center;
+}
+
+
+@media (max-width < 480px) {
+
+    /* om mobilvy visa hamburgerknappen */
+    .hamburger-button {
+        display: grid;
+    }
+}
+
+
+/* detta är för att se till att element som måste finnas för tillgänglighet inte syns - tex. rubriker */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
