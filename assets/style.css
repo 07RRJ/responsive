@@ -321,7 +321,7 @@ img {
     opacity: 0,4;
 }
 
-@media (max-width: 860px) {
+@media (max-width < 860px) {
     .card-layout {
         grid-template-columns: repeat(2, 1fr); /* två kolumner på mellan-skärmar */
     }
@@ -342,7 +342,7 @@ img {
 
 /* MOBILE VIEW */
 
-@media (max-width: 480px) {
+@media (max-width < 480px) {
 
     /* OBS: margins är en hjälpklass - se den användas med sections i HTML-filerna */
 
@@ -520,7 +520,7 @@ img {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width < 480px) {
 
     /* om mobilvy visa hamburgerknappen */
     .hamburger-button {
