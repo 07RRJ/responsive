@@ -50,6 +50,29 @@ nav.navigation-bar {
     z-index: 1;
 }
 
+.sidebar {
+    order: 1;
+    flex: 1;
+    position: fixed;
+    right: 0;
+    top: 2.3rem;
+    align-self: flex-start;
+    background-color: #eeeeee;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    height: fit-content;
+}
+
+.sidebar {
+    display: none;
+}
+
+.sidebar.open {
+    display: block;
+}
+
 .main-header {
     position: relative;
 
@@ -144,6 +167,8 @@ footer {
 
 .footer-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .footer-navigation-bar,
@@ -196,11 +221,11 @@ h3 {
     font-weight: 600;
     font-size: 1.5rem;
     line-height: 1.5;
-
 }
 
 .main-title {
     margin-block: 1rem 0.5rem;
+    /* font-size: clamp(2rem, 2.5vw 4rem); */
     font-size: 4rem;
     line-height: 1;
     white-space: pre-wrap;
@@ -223,18 +248,8 @@ h3 {
 
 .columns p {
     margin-top: 0;
-    min-width: 100px;
+    width: 100px;
 }
-
-@media (width: 860px) {
-    .columns {
-        columns: 2;
-    }
-    .main-header, .green-bg{
-        clip-path: none;
-    }
-}
-
 
 .footer-title {
     display: block;
@@ -243,15 +258,6 @@ h3 {
 
     font-size: 1.35rem;
     font-weight: 700;
-}
-
-@media (width: 480px) {
-    .footer-title {
-        margin-block: 1.5rem 0rem;
-    }
-        .columns {
-        columns: 1;
-    }
 }
 
 footer ul {
@@ -293,84 +299,34 @@ img {
     width: 2rem; 
     height: 2rem;
     aspect-ratio: 1;
+    object-fit: initial;
 }
 
-
-/* cards styling */
-
-/* TODO: se till att bilderna funkar i mobil-versionen */
-/* TODO: ÖVERKURS: Jag vill att alla utom den man hovrar över ska vara halvgenomskinliga - animationen, transition, måste också fungera */
 .card {
     all: unset;
-    overflow: hidden;
+    display: block;
     border-radius: 1rem;
-    transition: opacity 2000ms ease-in-out;
-}
-
-.card-image {
-    aspect-ratio: 4/5;
-    object-fit: cover;
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     cursor: pointer;
 }
 
+.card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 1rem;
+}
 
-.card:hover{
+.card-layout:hover .card {
+    opacity: 0.4;
+}
+
+.card-layout:hover .card:hover {
     opacity: 1;
+    transform: scale(1.02);
 }
-.card-layout:hover .card:not(:hover){
-    opacity: 0,4;
-}
-
-@media (max-width < 860px) {
-    .card-layout {
-        grid-template-columns: repeat(2, 1fr); /* två kolumner på mellan-skärmar */
-    }
-        .footer-container{
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .footer{
-        flex-direction: column;
-    }
-    .footer-social{
-        align-items: start;
-    }
-}
-
-/* responsiveness */
-
-/* MOBILE VIEW */
-
-@media (max-width < 480px) {
-
-    /* OBS: margins är en hjälpklass - se den användas med sections i HTML-filerna */
-
-    .margins {
-        width: 100%;
-        padding-inline: 1rem;
-    }
-
-    .card-layout{
-        grid-template-columns: 1fr;
-    }
-
-    .primary-navigation{
-        display: none;
-    }
-    .columns{
-        display: block;
-    }
-}
-
-/* TABLET VIEW */
-
-/* @media (width: 480px) and (width < 860px) {
-
-
-} */
-
-
 
 /* link styling */
 
@@ -519,16 +475,6 @@ img {
     place-items: center;
 }
 
-
-@media (max-width < 480px) {
-
-    /* om mobilvy visa hamburgerknappen */
-    .hamburger-button {
-        display: grid;
-    }
-}
-
-
 /* detta är för att se till att element som måste finnas för tillgänglighet inte syns - tex. rubriker */
 .visually-hidden {
     position: absolute;
@@ -541,4 +487,141 @@ img {
     border: 0;
 }
 
+/* @media things v */
 
+@media (width < 860px){
+    .main-header, .green-bg{
+        clip-path: none;
+    }
+
+    .hero-layout{
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+    }
+}
+
+/* TABLET VIEW */
+
+@media (width > 480px) and (width < 860px) {
+    .main-title{
+        font-size: 3rem;
+    }
+    .lead{
+        font-size: 1rem;
+    }
+
+    .card-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .columns {
+        columns: 2;
+    }
+
+    .hero-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+}
+
+/* MOBILE VIEW */
+
+@media (width < 480px) {
+    .primary-navigation {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 70%;
+        background-color: white;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        gap: 1rem;
+
+        padding: 6rem 2rem 2rem;
+
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+
+        transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+    }
+
+    .primary-navigation.open {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 10;
+    }
+
+    .hamburger-button {
+        display: grid;
+    }
+}
+
+@media (width > 480px) {
+    .sidebar {
+        position: fixed;
+        top: 3.5rem;
+        right: 0;
+        background-color: #eeeeee;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+
+        transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+    }
+
+    .sidebar.open {
+        transform: translateX(0%);
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 10;
+    }
+}
+
+@media (width < 480px) {
+    .main-title{
+        font-size: 2rem;
+    }
+    .lead{
+        font-size: 0.7rem;
+    }
+
+    .footer .footer-social{
+        align-items: start;
+    }
+    .footer-title {
+        margin-block: 1.5rem 0rem;
+    }
+    
+    .columns {
+        columns: 1;
+    }
+
+        /* OBS: margins är en hjälpklass - se den användas med sections i HTML-filerna */
+
+    .margins {
+        width: 100%;
+        padding-inline: 1rem;
+    }
+
+    .card-layout {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .primary-navigation{
+        display: none;
+    }
+    .columns{
+        display: block;
+    }
+}
