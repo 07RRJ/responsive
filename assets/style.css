@@ -304,7 +304,6 @@ img {
     all: unset;
     overflow: hidden;
     border-radius: 1rem;
-    opacity: 1;
     transition: opacity 2000ms ease-in-out;
 }
 
@@ -318,7 +317,6 @@ img {
 .card:hover{
     opacity: 1;
 }
-
 .card-layout:hover .card:not(:hover){
     opacity: 0,4;
 }
@@ -326,6 +324,17 @@ img {
 @media (max-width: 860px) {
     .card-layout {
         grid-template-columns: repeat(2, 1fr); /* två kolumner på mellan-skärmar */
+    }
+        .footer-container{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer{
+        flex-direction: column;
+    }
+    .footer-social{
+        align-items: start;
     }
 }
 
@@ -342,14 +351,6 @@ img {
         padding-inline: 1rem;
     }
 
-    .footer-container{
-        display: block;
-    }
-
-    .footer-social{
-        display: block;
-    }
-
     .card-layout{
         grid-template-columns: 1fr;
     }
@@ -361,7 +362,6 @@ img {
         display: block;
     }
 }
-
 
 /* TABLET VIEW */
 
